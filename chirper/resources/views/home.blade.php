@@ -1,22 +1,16 @@
 <x-layout>
-    @if ($errors->any())
-        <div class="alert alert-error shadow-lg mb-4">
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                <span>{{ $errors->first() }}</span>
-                {{  dd() }}
-            </div>
-        </div>
-    @endif
-
     <x-slot:title>
-        Home Feed
+        Home
     </x-slot:title>
 
     <div class="max-w-2xl mx-auto">
-        <h1 class="text-3xl font-bold mt-8">Latest Chirps</h1>
+        <div class="mt-8 space-y-3">
+            <p class="text-sm text-base-content/60 uppercase tracking-wide">Laravel practice project</p>
+            <h1 class="text-4xl font-bold">Chirper home</h1>
+            <p class="text-base-content/70">
+                A tiny Blade page for learning forms, routes, validation, and redirects.
+            </p>
+        </div>
 
         <!-- Chirp Form -->
         <div class="card bg-base-100 shadow mt-8">
@@ -43,22 +37,17 @@
             </div>
         </div>
 
-        <!-- Feed -->
-        <div class="space-y-4 mt-8">
-            @forelse ($chirps as $chirp)
-                <x-chirp :chirp="$chirp" />
-            @empty
-                <div class="hero py-12">
-                    <div class="hero-content text-center">
-                        <div>
-                            <svg class="mx-auto h-12 w-12 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                            </svg>
-                            <p class="mt-4 text-base-content/60">No chirps yet. Be the first to chirp!</p>
-                        </div>
+        <div class="mt-8">
+            <h2 class="text-xl font-semibold mb-4">Latest chirps</h2>
+            <div class="space-y-4">
+                @forelse ($chirps as $chirp)
+                    <x-chirp :chirp="$chirp" />
+                @empty
+                    <div class="alert alert-info">
+                        <span>No chirps yet. Add the first one above.</span>
                     </div>
-                </div>
-            @endforelse
+                @endforelse
+            </div>
         </div>
     </div>
 </x-layout>
